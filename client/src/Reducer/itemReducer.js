@@ -1,4 +1,4 @@
-const initState = {};
+const initState = { items: [], bookmarks: [] };
 
 const itemReducer = (state = initState, action) => {
   switch (action.type) {
@@ -6,7 +6,6 @@ const itemReducer = (state = initState, action) => {
       return {
         ...state,
         items: action.payload,
-        bookmarks: [],
       };
     default:
       return state;

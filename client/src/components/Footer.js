@@ -9,6 +9,7 @@ const FooterWrap = styled.div`
   align-items: center;
   justify-content: center;
   color: #888888;
+  margin-top: 30px;
 `;
 function Footer() {
   return (

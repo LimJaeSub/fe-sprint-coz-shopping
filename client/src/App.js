@@ -12,6 +12,9 @@ import BookMarkPage from "./pages/BookMarkPage";
 import ProductListPage from "./pages/ProductListPage";
 import NotPoundPage from "./pages/NotPoundPage";
 
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 function App() {
   const dispatch = useDispatch();
   const fetchData = async () => {
@@ -25,12 +28,14 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/bookmark" element={<BookMarkPage />}></Route>
         <Route path="/products/list" element={<ProductListPage />}></Route>
         <Route path="*" element={<NotPoundPage />}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

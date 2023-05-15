@@ -14,6 +14,7 @@ const HeaderWrap = styled.div`
   justify-content: space-around;
   height: 80px;
   box-shadow: 0 8px 8px 0px rgb(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 `;
 const HeaderLeft = styled.div`
   width: 40%;
