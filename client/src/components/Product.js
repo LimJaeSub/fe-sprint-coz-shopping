@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import BookOn from "../props/icon/bookmarkoff.png";
 
 const ProductWrap = styled.div`
   display: flex;
@@ -7,10 +8,25 @@ const ProductWrap = styled.div`
   width: 20%;
   height: 100%;
 `;
-const ProductPicture = styled.img`
+const ProductPictureWrap = styled.div`
   width: 100%;
   height: 70%;
+  border: none;
+  position: relative;
+`;
+const ProductPicture = styled.img`
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
+  z-index: 0;
+`;
+const BookmarkIcon = styled.img`
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 10px;
+  bottom: 10px;
 `;
 const InformationDetail = styled.div`
   width: 100%;
@@ -44,7 +60,10 @@ function Show({ data }) {
     case "Product":
       return (
         <>
-          <ProductPicture src={data.image_url} />
+          <ProductPictureWrap>
+            <ProductPicture src={data.image_url} />
+            <BookmarkIcon src={BookOn} />
+          </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
               <DetailLefttitle>{data.title}</DetailLefttitle>
@@ -63,7 +82,10 @@ function Show({ data }) {
     case "Exhibition":
       return (
         <>
-          <ProductPicture src={data.image_url} />
+          <ProductPictureWrap>
+            <ProductPicture src={data.image_url} />
+            <BookmarkIcon src={BookOn} />
+          </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
               <DetailLefttitle>{data.title}</DetailLefttitle>
@@ -75,7 +97,10 @@ function Show({ data }) {
     case "Brand":
       return (
         <>
-          <ProductPicture src={data.brand_image_url} />
+          <ProductPictureWrap>
+            <ProductPicture src={data.brand_image_url} />
+            <BookmarkIcon src={BookOn} />
+          </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
               <DetailLefttitle>{data.brand_name}</DetailLefttitle>
@@ -90,7 +115,10 @@ function Show({ data }) {
     case "Category":
       return (
         <>
-          <ProductPicture src={data.image_url} />
+          <ProductPictureWrap>
+            <ProductPicture src={data.image_url} />
+            <BookmarkIcon src={BookOn} />
+          </ProductPictureWrap>
           <InformationDetail>
             <DetailLefttitle>#{data.title}</DetailLefttitle>
           </InformationDetail>
@@ -101,10 +129,16 @@ function Show({ data }) {
   }
 }
 function Product(props) {
+  //const [dataid,setDataid] = useState('');
   const data = props.data;
 
+  const productClick = () => {
+    props.openModal(data.id);
+  };
   return (
-    <ProductWrap>{data ? <Show data={data} /> : <>Loading...</>}</ProductWrap>
+    <ProductWrap onClick={productClick}>
+      {data ? <Show data={data} /> : <>Loading...</>}
+    </ProductWrap>
   );
 }
 
