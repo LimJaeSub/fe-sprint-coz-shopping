@@ -24,7 +24,7 @@ function App() {
     dispatch({ type: "UPDATE_STATE", payload: res.data }); // reducer로 dispatch
   };
   useEffect(() => {
-    fetchData(); // 초기 렌더링에만 실행
+    fetchData(); // 초기 렌더링에만 실행(최초 1번)
   }, []);
   return (
     <BrowserRouter>
