@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import vector from "../props/icon/vector.png";
+import bookmarkoff from "../props/icon/bookmarkoff.png";
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -18,11 +20,30 @@ const ModalContent = styled.div`
   position: relative;
   background-color: #fff;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 10px;
   width: 50%;
   height: 50%;
   display: flex;
   background-image: url(${(props) => props.imageurl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+const VectorX = styled.img`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+`;
+const ProductTitle = styled.span`
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
 `;
 
 function Modal({ closeModal, modalID, data }) {
@@ -31,13 +52,13 @@ function Modal({ closeModal, modalID, data }) {
   })[0];
 
   const imageurl = modalData.image_url;
-  console.log(imageurl);
+  console.log(data[0].title);
 
   return (
     <ModalWrap>
-      <ModalContent imageUrl={imageurl}>
-        {modalData.id}
-        {modalID}
+      <ModalContent imageurl={imageurl}>
+        <VectorX src={vector} onClick={closeModal} />
+        <ProductTitle>{modalData.title} </ProductTitle>
       </ModalContent>
     </ModalWrap>
   );

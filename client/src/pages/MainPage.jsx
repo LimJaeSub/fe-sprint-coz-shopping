@@ -48,7 +48,6 @@ function MainPage() {
     setIsOpen(true);
   };
   const closeModal = () => {
-    console.log("close");
     setIsOpen(false);
   };
   return (
