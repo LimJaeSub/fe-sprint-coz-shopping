@@ -7,6 +7,9 @@ import Brandimg from "../props/image/Brand.png";
 import Categoryimg from "../props/image/Category.png";
 import Exhibitionimg from "../props/image/Exhibition.png";
 import Productimg from "../props/image/Product.png";
+
+import Product from "../components/Product";
+import Modal from "../components/Modal";
 const PageWrap = styled.div`
   width: 80%;
   margin: 0 auto;
@@ -29,11 +32,24 @@ const TypeTapTitle = styled.p`
   font-size: 16px;
   text-align: center;
 `;
+
+const ProductList = styled.div`
+  margin-top: 20px;
+`;
 function ProductListPage() {
   // app.js에서 최초 1번 useEffect를 통해 전체 데이터를 받아온 Redux에서 state 가져옴.
   const data = useSelector((state) => state.items);
 
   const [renderType, setRenderType] = useState(data);
+  const [isOpen, setIsOpen] = useState(false); // Modal 창을 보여질지 말지 결정하는 state
+  const [modalID, setModalID] = useState(0); // Product에서 불러온 상품의 ID를 저장하는 state
+  const openModal = (data) => {
+    setModalID(data);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   // 받아온 data->state
   useEffect(() => {
@@ -42,16 +58,26 @@ function ProductListPage() {
 
   const filterData = (type) => {
     if (type === "All") {
+      console.log(`data is : ${data}`);
       setRenderType(data);
+    } else {
+      const filterarr = data.filter((it) => {
+        return it.type === type;
+      });
+      setRenderType(filterarr);
     }
-    const filterarr = data.filter((it) => {
-      return it.type === type;
-    });
-    setRenderType(filterarr);
   };
 
+  const RenderProducts = renderType.map((it) => {
+    return <Product data={it} openModal={openModal} closeModal={closeModal} />;
+  });
+
+  console.log(RenderProducts);
   return (
     <PageWrap>
+      {isOpen ? (
+        <Modal modalID={modalID} data={data} closeModal={closeModal} />
+      ) : null}
       <Type>
         <TypeTapWrap>
           <TypeTapImg src={Allimg} onClick={() => filterData("All")} />
@@ -80,7 +106,9 @@ function ProductListPage() {
           <TypeTapTitle>브랜드</TypeTapTitle>
         </TypeTapWrap>
       </Type>
-      {renderType.length === 0 ? <div>Loading...</div> : renderType[0].id}
+      <ProductList>
+        {renderType.length === 0 ? <div>Loading...</div> : RenderProducts}
+      </ProductList>
     </PageWrap>
   );
 }
