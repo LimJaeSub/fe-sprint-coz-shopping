@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BookOn from "../props/icon/bookmarkoff.png";
+import Bookmark from "./Bookmark";
 
 const ProductWrap = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const ProductPicture = styled.img`
   border-radius: 20px;
   z-index: 0;
 `;
-const BookmarkIcon = styled.img`
+const BookmarkIcon = styled.div`
   position: absolute;
   width: 24px;
   height: 24px;
@@ -62,7 +63,9 @@ function Show({ data }) {
         <>
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
-            <BookmarkIcon src={BookOn} />
+            <BookmarkIcon>
+              <Bookmark />
+            </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
@@ -84,7 +87,9 @@ function Show({ data }) {
         <>
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
-            <BookmarkIcon src={BookOn} />
+            <BookmarkIcon>
+              <Bookmark />
+            </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
@@ -99,7 +104,9 @@ function Show({ data }) {
         <>
           <ProductPictureWrap>
             <ProductPicture src={data.brand_image_url} />
-            <BookmarkIcon src={BookOn} />
+            <BookmarkIcon>
+              <Bookmark />
+            </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
             <DetailLeft>
@@ -117,7 +124,9 @@ function Show({ data }) {
         <>
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
-            <BookmarkIcon src={BookOn} />
+            <BookmarkIcon>
+              <Bookmark />
+            </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
             <DetailLefttitle>#{data.title}</DetailLefttitle>

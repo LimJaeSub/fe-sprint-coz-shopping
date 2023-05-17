@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import vector from "../props/icon/vector.png";
-import bookmarkoff from "../props/icon/bookmarkoff.png";
+import Bookmark from "./Bookmark";
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -38,12 +38,18 @@ const VectorX = styled.img`
 `;
 const ProductTitle = styled.span`
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 70px;
+  bottom: 30px;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
   color: #ffffff;
+`;
+
+const BookmarkWrap = styled.div`
+  position: absolute;
+  left: 30px;
+  bottom: 31.5px;
 `;
 
 function Modal({ closeModal, modalID, data }) {
@@ -51,14 +57,21 @@ function Modal({ closeModal, modalID, data }) {
     return it.id === modalID;
   })[0];
 
-  const imageurl = modalData.image_url;
-  console.log(data[0].title);
+  const imageurl =
+    modalData.type === "Brand"
+      ? modalData.brand_image_url
+      : modalData.image_url;
+  const title =
+    modalData.type === "Brand" ? modalData.brand_name : modalData.title;
 
   return (
     <ModalWrap>
       <ModalContent imageurl={imageurl}>
         <VectorX src={vector} onClick={closeModal} />
-        <ProductTitle>{modalData.title} </ProductTitle>
+        <BookmarkWrap>
+          <Bookmark />
+        </BookmarkWrap>
+        <ProductTitle>{title} </ProductTitle>
       </ModalContent>
     </ModalWrap>
   );
