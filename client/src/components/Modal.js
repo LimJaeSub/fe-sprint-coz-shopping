@@ -69,7 +69,7 @@ function Modal({ closeModal, modalID, data }) {
       <ModalContent imageurl={imageurl}>
         <VectorX src={vector} onClick={closeModal} />
         <BookmarkWrap>
-          <Bookmark />
+          <Bookmark data={modalData} />
         </BookmarkWrap>
         <ProductTitle>{title} </ProductTitle>
       </ModalContent>
