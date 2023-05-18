@@ -32,10 +32,19 @@ const TypeTapTitle = styled.p`
   font-size: 16px;
   text-align: center;
 `;
-
 const ProductList = styled.div`
   margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
+const ProductListWrap = styled.div`
+  display: flex;
+  height: 300px;
+  justify-content: space-around;
+`;
+
 function ProductListPage() {
   // app.js에서 최초 1번 useEffect를 통해 전체 데이터를 받아온 Redux에서 state 가져옴.
   const data = useSelector((state) => state.items);
@@ -71,8 +80,13 @@ function ProductListPage() {
   const RenderProducts = renderType.map((it) => {
     return <Product data={it} openModal={openModal} closeModal={closeModal} />;
   });
+  const group = [];
+  for (let i = 0; i < RenderProducts.length; i = i + 4) {
+    group.push(RenderProducts.slice(i, i + 4));
+  }
 
-  console.log(RenderProducts);
+  // 상품 리스트들을 전부 Product 컴포넌트로 렌더링
+  //RenderProducts2();
   return (
     <PageWrap>
       {isOpen ? (
@@ -107,7 +121,15 @@ function ProductListPage() {
         </TypeTapWrap>
       </Type>
       <ProductList>
-        {renderType.length === 0 ? <div>Loading...</div> : RenderProducts}
+        {renderType.length === 0 ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            {group.map((it) => {
+              return <ProductListWrap>{it}</ProductListWrap>;
+            })}
+          </>
+        )}
       </ProductList>
     </PageWrap>
   );
