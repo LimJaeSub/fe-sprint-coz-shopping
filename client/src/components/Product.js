@@ -65,7 +65,7 @@ function Show({ data }) {
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
             <BookmarkIcon>
-              <Bookmark />
+              <Bookmark data={data} />
             </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
@@ -89,7 +89,7 @@ function Show({ data }) {
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
             <BookmarkIcon>
-              <Bookmark />
+              <Bookmark data={data} />
             </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
@@ -106,7 +106,7 @@ function Show({ data }) {
           <ProductPictureWrap>
             <ProductPicture src={data.brand_image_url} />
             <BookmarkIcon>
-              <Bookmark />
+              <Bookmark data={data} />
             </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>
@@ -126,7 +126,7 @@ function Show({ data }) {
           <ProductPictureWrap>
             <ProductPicture src={data.image_url} />
             <BookmarkIcon>
-              <Bookmark />
+              <Bookmark data={data} />
             </BookmarkIcon>
           </ProductPictureWrap>
           <InformationDetail>

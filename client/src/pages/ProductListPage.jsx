@@ -67,7 +67,6 @@ function ProductListPage() {
 
   const filterData = (type) => {
     if (type === "All") {
-      console.log(`data is : ${data}`);
       setRenderType(data);
     } else {
       const filterarr = data.filter((it) => {
@@ -77,8 +76,15 @@ function ProductListPage() {
     }
   };
 
-  const RenderProducts = renderType.map((it) => {
-    return <Product data={it} openModal={openModal} closeModal={closeModal} />;
+  const RenderProducts = renderType.map((it, idx) => {
+    return (
+      <Product
+        data={it}
+        openModal={openModal}
+        closeModal={closeModal}
+        key={idx}
+      />
+    );
   });
   const group = [];
   for (let i = 0; i < RenderProducts.length; i = i + 4) {
@@ -124,8 +130,8 @@ function ProductListPage() {
           <div>Loading...</div>
         ) : (
           <>
-            {group.map((it) => {
-              return <ProductListWrap>{it}</ProductListWrap>;
+            {group.map((it, idx) => {
+              return <ProductListWrap key={idx}>{it}</ProductListWrap>;
             })}
           </>
         )}

@@ -12,6 +12,11 @@ const itemReducer = (state = initState, action) => {
         ...state,
         bookmarks: [...state.bookmarks, action.payload],
       };
+    case "OUTPUT_BOOKMARK":
+      return {
+        ...state,
+        bookmarks: state.bookmarks.filter((item) => item.id !== action.payload),
+      };
     default:
       return state;
   }
