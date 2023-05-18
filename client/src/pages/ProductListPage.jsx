@@ -86,7 +86,6 @@ function ProductListPage() {
   }
 
   // 상품 리스트들을 전부 Product 컴포넌트로 렌더링
-  //RenderProducts2();
   return (
     <PageWrap>
       {isOpen ? (

@@ -38,7 +38,7 @@ const InformationDetail = styled.div`
 `;
 const DetailLeft = styled.div`
   font-size: 16px;
-  width: 50%;
+  width: 65%;
 `;
 const DetailLefttitle = styled.div`
   font-weight: bold;

@@ -7,6 +7,11 @@ const itemReducer = (state = initState, action) => {
         ...state,
         items: action.payload,
       };
+    case "INPUT_BOOKMARK":
+      return {
+        ...state,
+        bookmarks: [...state.bookmarks, action.payload],
+      };
     default:
       return state;
   }
