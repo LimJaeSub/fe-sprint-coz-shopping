@@ -43,6 +43,8 @@ function MainPage() {
 
   // product에서 클릭된 id 가져옴!!
   // 이 id를 Modal 컴포넌트에 넘겨줘서 id를 가지고 필터링 하여 정보에 맞는 Modal 창을 띄워준다.
+
+  // Modal
   const openModal = (data) => {
     setModalID(data);
     setIsOpen(true);
