@@ -6,7 +6,6 @@ function Bookmark({ data }) {
   const dispatch = useDispatch();
   const bookmarkdata = useSelector((state) => state.bookmarks);
   const [toggleOnOff, settoggleOnOff] = useState(false);
-  console.log(toggleOnOff);
   const OnToOff = () => {
     settoggleOnOff(!toggleOnOff);
     dispatch({ type: "OUTPUT_BOOKMARK", payload: data.id });
@@ -16,9 +15,9 @@ function Bookmark({ data }) {
     settoggleOnOff(!toggleOnOff);
     dispatch({ type: "INPUT_BOOKMARK", payload: data });
   };
-
+  const isShow = bookmarkdata.indexOf(data);
   // Bookmarkdata에 data.id가 있으면 색칠된 별을 보여주고
-  return toggleOnOff === false ? (
+  return isShow === -1 ? (
     <img onClick={OffToOn} src={bookmarkoff} alt="bookmark" />
   ) : (
     <img onClick={OnToOff} src={bookmarkon} alt="bookmark" />
