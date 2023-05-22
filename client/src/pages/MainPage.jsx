@@ -37,7 +37,7 @@ const BookMarkList = styled.div`
 `;
 
 function MainPage() {
-  const data = useSelector((state) => state.items);
+  const data = useSelector((state) => state.itemReducer.items);
   const [isOpen, setIsOpen] = useState(false); // Modal 창을 보여질지 말지 결정하는 state
   const [modalID, setModalID] = useState(0); // Product에서 불러온 상품의 ID를 저장하는 state
 

@@ -14,6 +14,7 @@ import NotPoundPage from "./pages/NotPoundPage";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Toast from "./components/Toast";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
     ); // 정보 받아옴
     dispatch({ type: "UPDATE_STATE", payload: res.data }); // reducer로 dispatch
   };
+
   useEffect(() => {
     fetchData(); // 초기 렌더링에만 실행(최초 1번)
   }, []);
@@ -35,6 +37,7 @@ function App() {
         <Route path="/products/list" element={<ProductListPage />}></Route>
         <Route path="*" element={<NotPoundPage />}></Route>
       </Routes>
+      <Toast />
       <Footer />
     </BrowserRouter>
   );

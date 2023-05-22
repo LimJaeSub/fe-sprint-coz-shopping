@@ -47,7 +47,7 @@ const ProductListWrap = styled.div`
 
 function ProductListPage() {
   // app.js에서 최초 1번 useEffect를 통해 전체 데이터를 받아온 Redux에서 state 가져옴.
-  const data = useSelector((state) => state.items);
+  const data = useSelector((state) => state.itemReducer.items);
 
   const [renderType, setRenderType] = useState(data);
   const [isOpen, setIsOpen] = useState(false); // Modal 창을 보여질지 말지 결정하는 state
