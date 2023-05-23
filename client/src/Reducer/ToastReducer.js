@@ -2,6 +2,7 @@ const ToastReducer = (
   state = { toastShow: false, toastType: true },
   action
 ) => {
+  // type
   // true : off->on
   // false : on->off
   switch (action.type) {

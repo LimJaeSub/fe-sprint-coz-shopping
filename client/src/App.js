@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import { Provider } from "react-redux";
 // import store from "./Reducer/Store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import MainPage from "./pages/MainPage";
 import BookMarkPage from "./pages/BookMarkPage";
@@ -18,6 +18,8 @@ import Toast from "./components/Toast";
 
 function App() {
   const dispatch = useDispatch();
+  const toastData = useSelector((state) => state.ToastReducer);
+  const { toastType, toastShow } = toastData;
   const fetchData = async () => {
     const res = await axios.get(
       "http://cozshopping.codestates-seb.link/api/v1/products"
@@ -28,6 +30,18 @@ function App() {
   useEffect(() => {
     fetchData(); // 초기 렌더링에만 실행(최초 1번)
   }, []);
+
+  useEffect(() => {
+    let timer;
+    if (toastShow) {
+      timer = setTimeout(() => {
+        dispatch({ type: "HIDE_TOAST" });
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [toastShow]);
   return (
     <BrowserRouter>
       <Header />
@@ -37,7 +51,9 @@ function App() {
         <Route path="/products/list" element={<ProductListPage />}></Route>
         <Route path="*" element={<NotPoundPage />}></Route>
       </Routes>
-      <Toast />
+      {toastShow === true ? (
+        <Toast toastType={toastType} toastShow={toastShow} />
+      ) : null}
       <Footer />
     </BrowserRouter>
   );
