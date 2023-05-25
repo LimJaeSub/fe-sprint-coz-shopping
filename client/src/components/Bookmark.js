@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 function Bookmark({ data }) {
   const dispatch = useDispatch();
   const bookmarkdata = useSelector((state) => state.itemReducer.bookmarks);
-  const toastData = useSelector((state) => state.ToastReducer.toastShow);
-  console.log(toastData);
+  //const toastData = useSelector((state) => state.ToastReducer.toastShow);
   const [toggleOnOff, settoggleOnOff] = useState(false);
 
   // 킨거 끄기(북마크 제거)
