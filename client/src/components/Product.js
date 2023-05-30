@@ -147,7 +147,13 @@ function Product(props) {
   };
   return (
     <ProductWrap onClick={productClick}>
-      {data ? <Show data={data} /> : <>Loading...</>}
+      {data ? (
+        <Show data={data} />
+      ) : props.type ? (
+        <>북마크를 추가해보세요!</>
+      ) : (
+        <>Loading...</>
+      )}
     </ProductWrap>
   );
 }

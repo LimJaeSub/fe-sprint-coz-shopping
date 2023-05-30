@@ -51,9 +51,7 @@ function App() {
         <Route path="/products/list" element={<ProductListPage />}></Route>
         <Route path="*" element={<NotPoundPage />}></Route>
       </Routes>
-      {toastShow === true ? (
-        <Toast toastType={toastType} toastShow={toastShow} />
-      ) : null}
+      {toastShow === true ? <Toast toastType={toastType} /> : null}
       <Footer />
     </BrowserRouter>
   );

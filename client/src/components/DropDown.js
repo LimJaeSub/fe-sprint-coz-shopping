@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Bookmark from "../props/icon/bookmarkicon.svg";
 import Product from "../props/icon/producticon.svg";
@@ -52,7 +53,7 @@ function DropDown() {
         <DropDownli>OOO 님, 안녕하세요!</DropDownli>
         <DropDownli>
           <IconWrap src={Bookmark} />
-          상품리스트 페이지
+          <Link to="/products/list">상품리스트 페이지</Link>
         </DropDownli>
         <DropDownli>
           <IconWrap src={Product} />

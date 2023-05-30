@@ -22,6 +22,7 @@ const ListTitle = styled.div`
 const ItemList = styled.div`
   width: 100%;
   height: 50%;
+  margin-bottom: 20px;
 `;
 
 const ProductComponentList = styled.div`
@@ -31,13 +32,13 @@ const ProductComponentList = styled.div`
   justify-content: space-between;
 `;
 const BookMarkList = styled.div`
-  background-color: yellow;
   width: 100%;
   height: 50%;
 `;
 
 function MainPage() {
   const data = useSelector((state) => state.itemReducer.items);
+  const bookmarkdata = useSelector((state) => state.itemReducer.bookmarks);
   const [isOpen, setIsOpen] = useState(false); // Modal 창을 보여질지 말지 결정하는 state
   const [modalID, setModalID] = useState(0); // Product에서 불러온 상품의 ID를 저장하는 state
 
@@ -52,6 +53,7 @@ function MainPage() {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   return (
     <>
       <Mainsection>
@@ -83,8 +85,41 @@ function MainPage() {
             />
           </ProductComponentList>
         </ItemList>
-        <BookMarkList />
-        {/* {data[0] ? <Test src={data[0].image_url} /> : <div>Loading....</div>} */}
+        <BookMarkList>
+          <ListTitle>북마크 리스트</ListTitle>
+          <ProductComponentList>
+            {bookmarkdata.length === 0 ? (
+              <div>북마크를 추가해보세요!</div>
+            ) : (
+              <>
+                <Product
+                  openModal={openModal}
+                  closeModal={closeModal}
+                  data={bookmarkdata[0]}
+                  type="bookmark"
+                />
+                <Product
+                  openModal={openModal}
+                  closeModal={closeModal}
+                  data={bookmarkdata[1]}
+                  type="bookmark"
+                />
+                <Product
+                  openModal={openModal}
+                  closeModal={closeModal}
+                  data={bookmarkdata[2]}
+                  type="bookmark"
+                />
+                <Product
+                  openModal={openModal}
+                  closeModal={closeModal}
+                  data={bookmarkdata[3]}
+                  type="bookmark"
+                />
+              </>
+            )}
+          </ProductComponentList>
+        </BookMarkList>
       </Mainsection>
     </>
   );
